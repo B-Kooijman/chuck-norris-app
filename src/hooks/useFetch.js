@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchResult } from "../utils/fetchResult";
 
-const useFetch = (url, category = "food") => {
+// defaults to food.
+const useFetch = (url, category) => {
   const [result, setResult] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -9,17 +10,14 @@ const useFetch = (url, category = "food") => {
   useEffect(() => {
     const getResult = async () => {
       setLoading(true);
+      setError();
       try {
         const endpoint = url + category;
         console.log(endpoint);
         await fetchResult(endpoint)
           .then((response) => {
-            if (Array.isArray(response.result)) {
-              console.log("kl", response.result[0]);
-              setResult(response.result[0]);
-            } else {
-              setResult(response);
-            }
+            console.log(response);
+            setResult(response);
           })
           .finally(() => {
             setError();
@@ -33,7 +31,6 @@ const useFetch = (url, category = "food") => {
     getResult();
   }, [url, category]);
 
-  console.log("hello", result);
   return { result, loading, error };
 };
 

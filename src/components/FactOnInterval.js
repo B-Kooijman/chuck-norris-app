@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
+import Result from "./Result";
 import { fetchResult } from "../utils/fetchResult";
-import config from "../config";
 
 const FactOnInterval = () => {
-  const [fact, setFact] = useState("Jokes are incoming...");
+  const [result, setResult] = useState("Jokes are incoming...");
 
   async function getFact() {
-    await fetchResult(config.randomFactUrl + "sport").then((response) =>
-      setFact(response.value)
-    );
+    await fetchResult().then((response) => setResult(response));
   }
 
   useEffect(() => {
@@ -16,11 +14,7 @@ const FactOnInterval = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <div>
-      <p>{fact}</p>
-    </div>
-  );
+  return result ? <Result {...result} /> : null;
 };
 
 export default FactOnInterval;

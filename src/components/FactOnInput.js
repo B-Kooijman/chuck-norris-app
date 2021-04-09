@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Result from "./Result";
+import StatusMessage from "./StatusMessage";
 import config from "../config";
 import useFetch from "../hooks/useFetch";
 
@@ -13,22 +15,16 @@ const FactOnInput = () => {
   }
 
   return (
-    <div>
-      {result && <p>{result.value}</p>}
-      {error && error}
+    <>
+      {result && <Result {...result} />}
 
       <input
         type="search"
         placeholder="Give me a fact about"
         onChange={inputHandler}
       />
-
-      {loading && <p>Aan het laden..</p>}
-      {/* <button type="submit" onClick={clickHandler}>
-        Search for fact
-      </button> */}
-      <br />
-    </div>
+      <StatusMessage loading={loading} error={error} />
+    </>
   );
 };
 

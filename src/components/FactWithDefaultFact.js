@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
+import Result from "./Result";
 import { fetchResult } from "../utils/fetchResult";
-import config from "../config";
 
 const FactWithDefaultFact = () => {
-  const [fact, setFact] = useState("This is a default value");
+  const [result, setResult] = useState("This is a default value");
 
-  async function jokeHandler() {
-    await fetchResult(config.randomFactUrl + "travel").then((response) =>
-      setFact(response.value)
-    );
+  async function clickHandler() {
+    await fetchResult().then((response) => setResult(response.value));
   }
 
   useEffect(() => {
-    jokeHandler();
+    clickHandler();
   }, []);
 
   return (
-    <div>
-      <p>{fact}</p>
-      <button onClick={jokeHandler}>Not funny, another one!</button>
-    </div>
+    <>
+      {result && <Result {...result} />}
+      <button onClick={clickHandler}>Not funny, another one!</button>
+    </>
   );
 };
 
