@@ -2,6 +2,9 @@ import { useState } from "react";
 import Result from "./Result";
 import StatusMessage from "./StatusMessage";
 import { fetchResult } from "../utils/fetchResult";
+import config from "../config";
+
+const url = config.randomFactUrl + "sport";
 
 const FactOnClick = () => {
   const [count, setCount] = useState(0);
@@ -14,13 +17,12 @@ const FactOnClick = () => {
   async function clickHandler() {
     setCount(count + 1);
     setLoading(true);
-    try {
-      await fetchResult()
-        .then((response) => setResult(response))
-        .finally(() => setLoading(false));
-    } catch (e) {
-      setError(true);
-    }
+    await fetchResult(url)
+      .then((response) => setResult(response))
+      .catch(() => {
+        console.log(error); 
+        setError(true)})
+      .finally(() => setLoading(false));
   }
 
   return (

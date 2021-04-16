@@ -1,7 +1,5 @@
-import config from "../config";
-
-export async function fetchResult() {
-  const result = await fetch(config.randomFactUrl + "sport").then(
+export async function fetchResult(url) {
+  const result = await fetch(url).then(
     (response) => {
       if (response.ok) {
         return response.json();

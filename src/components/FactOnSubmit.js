@@ -1,16 +1,12 @@
 import { useState, useRef } from "react";
 import Result from "./Result";
 import StatusMessage from "./StatusMessage";
-import config from "../config";
 import useFetch from "../hooks/useFetch";
 
 const FactOnSubmit = () => {
   const inputRef = useRef();
   const [searchText, setSearchText] = useState();
-  const { result, loading, error } = useFetch(
-    config.randomFactUrl,
-    inputRef.current?.value
-  );
+  const { result, loading, error } = useFetch(inputRef.current?.value);
 
   // why do we need useState?
   const submitHandler = () => setSearchText(inputRef.current?.value);
@@ -20,7 +16,7 @@ const FactOnSubmit = () => {
   //3. try to log value after click.
 
   return (
-    <>
+    <div className="box">
       {result && <Result {...result} />}
       <input ref={inputRef} />
       <button type="submit" onClick={submitHandler}>
@@ -28,7 +24,7 @@ const FactOnSubmit = () => {
       </button>
       {searchText && <p>you searched for:{inputRef.current.value}</p>}
       <StatusMessage loading={loading} error={error} />
-    </>
+    </div>
   );
 };
 

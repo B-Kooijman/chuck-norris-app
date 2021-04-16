@@ -5,43 +5,46 @@ import FactOnInput from "./components/FactOnInput";
 import FactOnSubmit from "./components/FactOnSubmit";
 import FactOnMount from "./components/FactOnMount";
 import FactOnInterval from "./components/FactOnInterval";
-import FactWithDefaultFact from "./components/FactWithDefaultFact";
+import FactWithDefault from "./components/FactWithDefault";
+import FactOnToggle from "./components/FactOnToggle";
+
+const NavLink = ({url, text}) => <li><Link to={url}>{text}</Link></li>
+const routes = {
+  onClick: "/",
+  onInput: "/oninput",
+  onSubmit: "/onsubmit",
+  onMount: "/onmount",
+  onInterval: "/oninterval",
+  withDefault: "/withdefault",
+  onUnmount: "/onunmount",
+}
 
 export default function App() {
+const {onClick, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
+
   return (
     <div className="App">
       <nav className="">
         <ul>
-          <li>
-            <Link to="/">On Click</Link>
-          </li>
-          <li>
-            <Link to="/oninput">On Input</Link>
-          </li>
-          <li>
-            <Link to="/onsubmit">On Submit</Link>
-          </li>
-          <li>
-            <Link to="/onmount">On Mount</Link>
-          </li>
-
-          <li>
-            <Link to="/oninterval">On Interval</Link>
-          </li>
-          <li>
-            <Link to="/withdefault">with Default</Link>
-          </li>
+            <NavLink url={onClick} text="On Click" />
+            <NavLink url={onInput} text="On Input" />
+            <NavLink url={onSubmit} text="On Submit" />
+            <NavLink url={onMount} text="On Mount" />
+            <NavLink url={onInterval} text="On Interval" />
+            <NavLink url={withDefault} text="With Default" />
+            <NavLink url={onUnmount} text="On Unmount" />
         </ul>
       </nav>
 
       <h1>Tell me about Chuck Norris</h1>
       <Switch>
-        <Route exact path="/" component={FactOnClick} />
-        <Route path="/oninput" component={FactOnInput} />
-        <Route path="/onsubmit" component={FactOnSubmit} />
-        <Route path="/onmount" component={FactOnMount} />
-        <Route path="/withdefault" component={FactWithDefaultFact} />
-        <Route path="/oninterval" component={FactOnInterval} />
+        <Route exact path={onClick} component={FactOnClick} />
+        <Route path={onInput} component={FactOnInput} />
+        <Route path={onSubmit} component={FactOnSubmit} />
+        <Route path={onMount} component={FactOnMount} />
+        <Route path={onInterval} component={FactWithDefault} />
+        <Route path={withDefault} component={FactOnInterval} />
+        <Route path={onUnmount} component={FactOnToggle} />
       </Switch>
     </div>
   );

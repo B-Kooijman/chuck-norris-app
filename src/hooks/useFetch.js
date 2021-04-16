@@ -1,35 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchResult } from "../utils/fetchResult";
+import config from "../config";
 
-// defaults to food.
-const useFetch = (url, category) => {
+const baseUrl = config.randomFactUrl;
+const defaultUrl = baseUrl + "food";
+
+const useFetch = (category) => {
   const [result, setResult] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
+  const isMounted = useRef(false);
+  const url = category ? baseUrl + category : defaultUrl;
 
   useEffect(() => {
+    isMounted.current = true;
+
     const getResult = async () => {
       setLoading(true);
       setError();
-      try {
-        const endpoint = url + category;
-        console.log(endpoint);
-        await fetchResult(endpoint)
-          .then((response) => {
-            console.log(response);
+      setTimeout(async () => {
+
+      await fetchResult(url)
+        .then((response) => {
+          if (isMounted.current) {
             setResult(response);
-          })
-          .finally(() => {
+        }
+      })
+        .catch((error) => {
+          if (isMounted.current) {
+            setResult();
+            setError(error.message);
+          }
+        })
+        .finally(() => {
+          if (isMounted.current) {
             setError();
             setLoading(false);
-          });
-      } catch (error) {
-        setResult();
-        setError(error.message);
-      }
+          }
+        });
+      }, 5000)
     };
-    getResult();
-  }, [url, category]);
+
+      getResult();
+
+    return () => {
+      isMounted.current = false;
+    };
+  }, [url]);
 
   return { result, loading, error };
 };
