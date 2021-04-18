@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Result from "./Result";
-import StatusMessage from "./StatusMessage";
+import Result from "./_shared/Result";
+import StatusMessage from "./_shared/StatusMessage";
 import useFetch from "../hooks/useFetch";
 
 const FactOnInput = () => {

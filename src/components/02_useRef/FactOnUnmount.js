@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FactOnSubmit from "./FactOnSubmit";
 
-function FactOnToggle() {
+function FactOnUnmount() {
   const [mounted, setMounted] = useState(true);
 
   return (
@@ -12,4 +12,4 @@ function FactOnToggle() {
   );
 }
 
-export default FactOnToggle;
+export default FactOnUnmount;

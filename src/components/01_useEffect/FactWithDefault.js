@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Result from "./Result";
-import { fetchResult } from "../utils/fetchResult";
+import Result from "../_shared/Result";
+import { fetchResult } from "../../utils/fetchResult";
 
 const FactWithDefault = () => {
   const [result, setResult] = useState("This is a default value");
