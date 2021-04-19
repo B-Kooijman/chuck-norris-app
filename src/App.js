@@ -9,6 +9,7 @@ import DerivedState from "./components/00_useState/04_DerivedState";
 import MultipleStates from "./components/00_useState/05_MultipleStates";
 import StateEnum from "./components/00_useState/06_StateEnum";
 import CustomHook from "./components/00_useState/07_CustomHook";
+import LazyInitializer from "./components/00_useState/08_LazyInitializer";
 
 // useRef
 import FactOnSubmit from "./components/02_useRef/FactOnSubmit";
@@ -29,6 +30,7 @@ const routes = {
   multipleStates: "/multiplestates",
   stateEnum: "/stateenum",
   customHook: "/customhook",
+  lazyInitializer: "/lazyinitializer",
   onInput: "/oninput",
   onSubmit: "/onsubmit",
   onMount: "/onmount",
@@ -38,7 +40,7 @@ const routes = {
 }
 
 export default function App() {
-const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum, customHook, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
+const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum, customHook, lazyInitializer, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
 
   return (
     <div className="App">
@@ -51,6 +53,7 @@ const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum,
             <NavLink url={multipleStates} text="Multiple States" />
             <NavLink url={stateEnum} text="State Enum" />
             <NavLink url={customHook} text="Custom Hook" />
+            <NavLink url={lazyInitializer} text="Lazy Initializer" />
             <NavLink url={onInput} text="On Input" />
             <NavLink url={onSubmit} text="On Submit" />
             <NavLink url={onMount} text="On Mount" />
@@ -69,6 +72,7 @@ const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum,
         <Route path={multipleStates} component={MultipleStates} />
         <Route path={stateEnum} component={StateEnum} />
         <Route path={customHook} component={CustomHook} />
+        <Route path={lazyInitializer} component={LazyInitializer} />
         <Route path={onInput} component={FactOnInput} />
         <Route path={onSubmit} component={FactOnSubmitRefactored} />
         <Route path={onMount} component={FactOnMount} />
