@@ -1,13 +1,13 @@
-import { useState } from "react";
 import Result from "../_shared/Result";
 import { fetchResult } from "../../utils/fetchResult";
 import config from "../../config";
+import useResult from "../../hooks/useResult";
 import useView, { viewState } from "../../hooks/useView";
 
 const url = config.randomFactUrl + "sport";
 
-const FactOnClickCustomHook = () => {
-  const [result, setResult] = useState(null);
+const CustomHook = () => {
+  const [result, setResult] = useResult();
   const [status, { setSuccessView, setLoadingView, setErrorView }] = useView(viewState.SUCCESS);
 
   async function clickHandler() {
@@ -32,4 +32,4 @@ const FactOnClickCustomHook = () => {
   );
 };
 
-export default FactOnClickCustomHook;
+export default CustomHook;

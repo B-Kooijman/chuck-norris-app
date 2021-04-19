@@ -11,7 +11,7 @@ const viewState = {
   ERROR: "error"
 }
 
-const FactOnClickStateEnum = () => {
+const StateEnum = () => {
   const [result, setResult] = useState(null);
   const [status, setStatus] = useState(viewState.SUCCESS);
 
@@ -38,4 +38,4 @@ const FactOnClickStateEnum = () => {
   );
 };
 
-export default FactOnClickStateEnum;
+export default StateEnum;

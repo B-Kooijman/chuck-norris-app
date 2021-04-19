@@ -5,7 +5,7 @@ import config from "../../config";
 
 const url = config.randomFactUrl + "sport";
 
-const FactOnClick = () => {
+const MultipleStates = () => {
   // three states, use a state enum!
   const [result, setResult] = useState(null);
   const [error, setError] = useState(false);
@@ -31,4 +31,4 @@ const FactOnClick = () => {
   );
 };
 
-export default FactOnClick;
+export default MultipleStates;

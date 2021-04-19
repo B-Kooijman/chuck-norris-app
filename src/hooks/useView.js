@@ -8,7 +8,7 @@ export const viewState = {
 
 const useView = (initialView = viewState.LOADING) => {
   const [view, setView] = useState(initialView);
-
+  
   const viewSetters = {
     setSuccessView: () => setView(viewState.SUCCESS),
     setLoadingView: () => setView(viewState.LOADING),

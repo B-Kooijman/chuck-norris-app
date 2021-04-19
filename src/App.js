@@ -4,9 +4,11 @@ import { Route, Switch, Link } from "react-router-dom";
 // useState
 import FactOnToggle from "./components/00_useState/01_FactOnToggle";
 import FactOnLikes from "./components/00_useState/02_FactOnLikes";
-import FactOnClick from "./components/00_useState/FactOnClick";
-import FactOnClickStateEnum from "./components/00_useState/FactOnClickStateEnum";
-import FactOnClickCustomHook from "./components/00_useState/FactOnClickCustomHook";
+import LiftingState from "./components/00_useState/03_LiftingState";
+import DerivedState from "./components/00_useState/04_DerivedState";
+import MultipleStates from "./components/00_useState/05_MultipleStates";
+import StateEnum from "./components/00_useState/06_StateEnum";
+import CustomHook from "./components/00_useState/07_CustomHook";
 
 // useRef
 import FactOnSubmit from "./components/02_useRef/FactOnSubmit";
@@ -22,7 +24,11 @@ const NavLink = ({url, text}) => <li><Link to={url}>{text}</Link></li>
 const routes = {
   onToggle: "/ontoggle",
   onLikes: "/onlikes",
-  onClick: "/onclick",
+  liftingState: "/liftingstate",
+  derivedState: "/derivedstate",
+  multipleStates: "/multiplestates",
+  stateEnum: "/stateenum",
+  customHook: "/customhook",
   onInput: "/oninput",
   onSubmit: "/onsubmit",
   onMount: "/onmount",
@@ -32,7 +38,7 @@ const routes = {
 }
 
 export default function App() {
-const {onToggle, onLikes, onClick, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
+const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum, customHook, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
 
   return (
     <div className="App">
@@ -40,7 +46,11 @@ const {onToggle, onLikes, onClick, onInput, onSubmit, onMount, onInterval, withD
         <ul>
             <NavLink url={onToggle} text="On Toggle" />
             <NavLink url={onLikes} text="On Likes" />
-            <NavLink url={onClick} text="On Click" />
+            <NavLink url={liftingState} text="Lifting State" />
+            <NavLink url={derivedState} text="Derived State" />
+            <NavLink url={multipleStates} text="Multiple States" />
+            <NavLink url={stateEnum} text="State Enum" />
+            <NavLink url={customHook} text="Custom Hook" />
             <NavLink url={onInput} text="On Input" />
             <NavLink url={onSubmit} text="On Submit" />
             <NavLink url={onMount} text="On Mount" />
@@ -53,8 +63,12 @@ const {onToggle, onLikes, onClick, onInput, onSubmit, onMount, onInterval, withD
       <h1>Tell me about Chuck Norris</h1>
       <Switch>
         <Route exact path={onToggle} component={FactOnToggle} />
-        <Route exact path={onLikes} component={FactOnLikes} />
-        <Route path={onClick} component={FactOnClickCustomHook} />
+        <Route path={onLikes} component={FactOnLikes} />
+        <Route path={liftingState} component={LiftingState} />
+        <Route path={derivedState} component={DerivedState} />
+        <Route path={multipleStates} component={MultipleStates} />
+        <Route path={stateEnum} component={StateEnum} />
+        <Route path={customHook} component={CustomHook} />
         <Route path={onInput} component={FactOnInput} />
         <Route path={onSubmit} component={FactOnSubmitRefactored} />
         <Route path={onMount} component={FactOnMount} />
