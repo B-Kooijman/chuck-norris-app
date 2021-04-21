@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import Result from "../_shared/Result";
-import StatusMessage from "../_shared/StatusMessage";
 import useFetch from "../../hooks/useFetch";
 
 const FactOnSubmit = () => {
@@ -11,7 +10,7 @@ const FactOnSubmit = () => {
   // why do we need useState?
   const submitHandler = () => setSearchText(inputRef.current?.value);
 
-  //1. try to pass ref value to useFetch as argument
+  //1. try to pass ref value to useFetch as argument, without useState.
   //2. try with useEffect with ref as dependency
   //3. try to log value after click.
 
@@ -22,12 +21,11 @@ const FactOnSubmit = () => {
         Search for category
       </button>
 
-      {status === "success" && <Result {...result} />}
-      {status === "loading" && <strong>Loading.. </strong>}
-      {status === "error" && <strong>Something went wrong</strong>}
+      {result && <Result {...result} />}
+      {loading && <strong>Loading.. </strong>}
+      {error === "error" && <strong>Something went wrong</strong>}
 
       {searchText && <p>you searched for:{inputRef.current.value}</p>}
-      <StatusMessage loading={loading} error={error} />
     </div>
   );
 };

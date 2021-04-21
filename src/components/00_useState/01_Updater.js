@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FactOnToggle = () => {
+const Updater = () => {
 
   const [like, setLike] = useState(false);
 
@@ -13,6 +13,7 @@ const FactOnToggle = () => {
   return (
     <div className="box">
       <div>{like ? <span style={{color: "red"}}>liked</span> : <span>like</span>}</div>
+      {/* synthetic events */}
       <button onClick={regularUpdater}>like this fact witch regular updater</button>
       <button onClick={functionalUpdater}>like this fact with functional updater</button>
       <p>When Chuck Norris does a pushup, he isn't lifting himself up, he's pushing the Earth down.</p>
@@ -20,4 +21,4 @@ const FactOnToggle = () => {
   );
 };
 
-export default FactOnToggle;
+export default Updater;

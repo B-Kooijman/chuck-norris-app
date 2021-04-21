@@ -1,14 +1,67 @@
 import { useState } from "react";
 
-const ChildComponent = ({ clickHandler }) => (
-  <>
-    <p>
-      When Chuck Norris does a pushup, he isn't lifting himself up, he's pushing
-      the Earth down.
-    </p>
-    <button onClick={clickHandler}>like!</button>
-  </>
-);
+//#region Child State
+// const ChildComponent = ()  => {
+
+//   const [likes, setLikes] = useState(0);
+//   const likeUpdater = () => setLikes((likes) => likes + 1);
+
+//   return (
+//   <>
+//     <div>{likes} likes</div>
+//     <p>
+//       When Chuck Norris does a pushup, he isn't lifting himself up, he's pushing
+//       the Earth down.
+//     </p>
+//     <button onClick={likeUpdater}>like!</button>
+//   </>)
+// }
+
+// const LiftingState = () => 
+//     <div className="box">
+//       <ChildComponent />
+//     </div>
+//#endregion 
+
+
+// #region Lifting State
+// const ChildComponent = ({ clickHandler }) => (
+//   <>
+//     <p>
+//       When Chuck Norris does a pushup, he isn't lifting himself up, he's pushing
+//       the Earth down.
+//     </p>
+//     <button onClick={clickHandler}>like!</button>
+//   </>
+// );
+
+// const LiftingState = () => {
+//   const [likes, setLikes] = useState(0);
+//   const likeUpdater = () => setLikes((likes) => likes + 1);
+
+//   return (
+//     <div className="box">
+//       <div>{likes} likes</div>
+//       <ChildComponent clickHandler={likeUpdater} />
+//     </div>
+//   );
+// };
+// #endregion
+
+// #region Passing State and Setter
+const ChildComponent = ({ likeState }) => {
+  console.log(likeState);
+  return (
+    <div>
+      {likeState?.likes > 5 && <span> Top Fact about Chuck!</span>}
+      <p>
+        When Chuck Norris does a pushup, he isn't lifting himself up, he's
+        pushing the Earth down.
+      </p>
+      <button onClick={likeState?.likeUpdater}>like!</button>
+    </div>
+  );
+};
 
 const LiftingState = () => {
   const [likes, setLikes] = useState(0);
@@ -17,35 +70,10 @@ const LiftingState = () => {
   return (
     <div className="box">
       <div>{likes} likes</div>
-      <ChildComponent clickHandler={likeUpdater} />
+      <ChildComponent likeState={{ likes, likeUpdater }} />
     </div>
   );
 };
-
-// const ChildComponent2 = ({ likeState }) => {
-//   console.log(likeState);
-//   return (
-//     <div>
-//       {likeState?.likes > 5 && <span> Top Fact about Chuck!</span>}
-//       <p>
-//         When Chuck Norris does a pushup, he isn't lifting himself up, he's
-//         pushing the Earth down.
-//       </p>
-//       <button onClick={likeState?.likeUpdater}>like!</button>
-//     </div>
-//   );
-// };
-
-// const ParentComponent2 = () => {
-//   const [likes, setLikes] = useState(0);
-//   const likeUpdater = () => setLikes((likes) => likes + 1);
-
-//   return (
-//     <div className="box">
-//       <div>{likes} likes</div>
-//       <ChildComponent2 likeState={{ likes, likeUpdater }} />
-//     </div>
-//   );
-// };
+//#endregion
 
 export default LiftingState;

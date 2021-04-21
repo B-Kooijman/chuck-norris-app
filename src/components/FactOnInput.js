@@ -19,7 +19,7 @@ const FactOnInput = () => {
       <input
         type="search"
         placeholder="Give me a fact about"
-        onChange={inputHandler}
+        onChange={inputHandler} // this is a synthetic event.
       />
       <StatusMessage loading={loading} error={error} />
     </>

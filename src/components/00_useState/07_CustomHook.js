@@ -7,6 +7,7 @@ import useView, { viewState } from "../../hooks/useView";
 const url = config.randomFactUrl + "sport";
 
 const CustomHook = () => {
+  // Encapsulation.
   const [result, setResult] = useResult();
   const [status, { setSuccessView, setLoadingView, setErrorView }] = useView(viewState.SUCCESS);
 

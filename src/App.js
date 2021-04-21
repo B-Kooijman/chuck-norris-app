@@ -1,9 +1,9 @@
 import "./styles.css";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, NavLink } from "react-router-dom";
 
 // useState
-import FactOnToggle from "./components/00_useState/01_FactOnToggle";
-import FactOnLikes from "./components/00_useState/02_FactOnLikes";
+import Updater from "./components/00_useState/01_Updater";
+import FunctionalUpdater from "./components/00_useState/02_FunctionalUpdater";
 import LiftingState from "./components/00_useState/03_LiftingState";
 import DerivedState from "./components/00_useState/04_DerivedState";
 import MultipleStates from "./components/00_useState/05_MultipleStates";
@@ -14,17 +14,35 @@ import LazyInitializer from "./components/00_useState/08_LazyInitializer";
 // useRef
 import FactOnSubmit from "./components/02_useRef/FactOnSubmit";
 import FactOnSubmitRefactored from "./components/02_useRef/FactOnSubmitRefactored";
+import FactOnUnmount from "./components/02_useRef/FactOnUnmount";
+
+//useMemo
+import MemoizeValue from "./components/05_performance/01_MemoizeValue";
+import MemoizeFunction from "./components/05_performance/02_MemoizeFunction";
 
 import FactOnInput from "./components/FactOnInput";
 import FactOnMount from "./components/FactOnMount";
 import FactOnInterval from "./components/01_useEffect/FactOnInterval";
 import FactWithDefault from "./components/01_useEffect/FactWithDefault";
-import FactOnUnmount from "./components/02_useRef/FactOnUnmount";
 
-const NavLink = ({url, text}) => <li><Link to={url}>{text}</Link></li>
+import ThemeButton from "./components/_shared/ThemeButton";
+import ThemeButtonRefactored from "./components/_shared/ThemeButtonRefactored";
+import { useTheme } from "./components/04_context/ThemeContext";
+
+const MenuItem = ({ url, text, exact = false }) => {
+  // console.log("rerendered");
+  return (
+    <li>
+      <NavLink activeClassName="active" to={url} exact={exact}>
+        {text}
+      </NavLink>
+    </li>
+  );
+};
+
 const routes = {
-  onToggle: "/ontoggle",
-  onLikes: "/onlikes",
+  updater: "/",
+  functionalUpdater: "/functionalupdater",
   liftingState: "/liftingstate",
   derivedState: "/derivedstate",
   multipleStates: "/multiplestates",
@@ -37,36 +55,74 @@ const routes = {
   onInterval: "/oninterval",
   withDefault: "/withdefault",
   onUnmount: "/onunmount",
-}
+  memoizeValue: "/memoizevalue",
+  memoizeFunction: "/memoizeFunction",
+};
 
 export default function App() {
-const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum, customHook, lazyInitializer, onInput, onSubmit, onMount, onInterval, withDefault, onUnmount } = routes;
+  const {
+    updater,
+    functionalUpdater,
+    liftingState,
+    derivedState,
+    multipleStates,
+    stateEnum,
+    customHook,
+    lazyInitializer,
+    onInput,
+    onSubmit,
+    onMount,
+    onInterval,
+    withDefault,
+    onUnmount,
+    memoizeValue,
+    memoizeFunction
+  } = routes;
+
+  const [theme, setTheme] = useTheme();
 
   return (
-    <div className="App">
-      <nav className="">
+    //  <div className="app">
+    <div className={`app ${theme === "light" ? "app--light" : "app--dark"}`}>
+      <nav>
         <ul>
-            <NavLink url={onToggle} text="On Toggle" />
-            <NavLink url={onLikes} text="On Likes" />
-            <NavLink url={liftingState} text="Lifting State" />
-            <NavLink url={derivedState} text="Derived State" />
-            <NavLink url={multipleStates} text="Multiple States" />
-            <NavLink url={stateEnum} text="State Enum" />
-            <NavLink url={customHook} text="Custom Hook" />
-            <NavLink url={lazyInitializer} text="Lazy Initializer" />
-            <NavLink url={onInput} text="On Input" />
-            <NavLink url={onSubmit} text="On Submit" />
-            <NavLink url={onMount} text="On Mount" />
-            <NavLink url={onInterval} text="On Interval" />
-            <NavLink url={withDefault} text="With Default" />
-            <NavLink url={onUnmount} text="On Unmount" />
+          <div>
+            <span>useState</span>
+            <MenuItem url={updater} text="Updater" exact={true} />
+            <MenuItem url={functionalUpdater} text="Functional Updater" />
+            <MenuItem url={liftingState} text="Lifting State" />
+            <MenuItem url={derivedState} text="Derived State" />
+            <MenuItem url={multipleStates} text="Multiple States" />
+            <MenuItem url={stateEnum} text="State Enum" />
+            <MenuItem url={customHook} text="Custom Hook" />
+            <MenuItem url={lazyInitializer} text="Lazy Initializer" />
+          </div>
+          <div>
+            <span>useEffect</span>
+            <MenuItem url={onInput} text="On Input" />
+            <MenuItem url={onMount} text="On Mount" />
+            <MenuItem url={onInterval} text="On Interval" />
+            <MenuItem url={withDefault} text="With Default" />
+          </div>
+          <div>
+            <span>useRef</span>
+            <MenuItem url={onSubmit} text="On Submit" />
+            <MenuItem url={onUnmount} text="On Unmount" />
+          </div>
+          <div>
+            <span>Performance</span>
+            <MenuItem url={memoizeValue} text="Memoize Value" />
+            <MenuItem url={memoizeFunction} text="Memoize Function" />
+          </div>
         </ul>
+        <ThemeButton />
+        {/* <ThemeButtonRefactored /> */}
       </nav>
 
       <h1>Tell me about Chuck Norris</h1>
       <Switch>
-        <Route exact path={onToggle} component={FactOnToggle} />
-        <Route path={onLikes} component={FactOnLikes} />
+        <Route exact path={updater} component={Updater} />
+        <Route path={functionalUpdater} component={FunctionalUpdater} />
         <Route path={liftingState} component={LiftingState} />
         <Route path={derivedState} component={DerivedState} />
         <Route path={multipleStates} component={MultipleStates} />
@@ -79,6 +135,8 @@ const {onToggle, onLikes, liftingState, derivedState, multipleStates, stateEnum,
         <Route path={onInterval} component={FactWithDefault} />
         <Route path={withDefault} component={FactOnInterval} />
         <Route path={onUnmount} component={FactOnUnmount} />
+        <Route path={memoizeValue} component={MemoizeValue} />
+        <Route path={memoizeFunction} component={MemoizeFunction} />
       </Switch>
     </div>
   );

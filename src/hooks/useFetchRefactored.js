@@ -2,23 +2,27 @@ import { useEffect, useRef, useState } from "react";
 import { fetchResult } from "../utils/fetchResult";
 import config from "../config";
 import useView from "./useView";
+import useViewReducer from "./useViewReducer";
 
 const baseUrl = config.randomFactUrl;
 const defaultUrl = baseUrl + "food";
 
 const useFetchRefactored = (category) => {
-  const [result, setResult] = useState();
-  const [status, { setSuccessView, setLoadingView, setErrorView }] = useView();
-
-  const isMounted = useRef(false);
+  console.log("executed: useFetchRefactored")
   const url = category ? baseUrl + category : defaultUrl;
+  
+  const [result, setResult] = useState();
+  //  const [status, { setSuccessView, setLoadingView, setErrorView }] = useView();
+  const {status, setSuccessView, setLoadingView, setErrorView } = useViewReducer();
+  const isMounted = useRef(false);
 
   useEffect(() => {
     isMounted.current = true;
+
     const getResult = async () => {
       setLoadingView();
       setTimeout(async () => {
-        await fetchResult(url)
+        await fetchResult(url + "*")
           .then((response) => {
             if (isMounted.current) {
               setResult(response);

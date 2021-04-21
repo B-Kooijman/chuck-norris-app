@@ -13,12 +13,16 @@ const ChildComponent = ({ clickHandler }) => (
 );
 
 const getLikesFromSession = () => {
+  console.log("executed: getLikesFromSession")
   const likes = Number(localStorage.getItem(key));
   return Number.isNaN(likes) || !likes ? 0 : likes;
 }
 
 const LazyInitializer = () => {
-  const [likes, setLikes] = useState(() => getLikesFromSession());
+
+  //Look at the logs, what do you notice when you rerender?
+
+  const [likes, setLikes] = useState(getLikesFromSession());
   const likeUpdater = () => setLikes((likes) => likes + 1);
 
   useEffect(() => localStorage.setItem(key, likes), [likes]);

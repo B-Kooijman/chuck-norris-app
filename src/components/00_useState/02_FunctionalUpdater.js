@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-const FactOnLikes = () => {
+const FunctionalUpdater = () => {
 
   const [likes, setLikes] = useState(0);
+
+console.log("hello")
 
   // 1 regular state update
   const regularUpdater = () => {
@@ -28,4 +30,4 @@ const FactOnLikes = () => {
   );
 };
 
-export default FactOnLikes;
+export default FunctionalUpdater;

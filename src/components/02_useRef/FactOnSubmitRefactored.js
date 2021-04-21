@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import StatusMessageRefactored from "../_shared/StatusMessageRefactored";
-import useFetchRefactored from "../../hooks/useFetchRefactored"
+import { viewState } from "../../hooks/useView";
+import useFetchRefactored from "../../hooks/useFetchRefactored";
 
 const FactOnSubmitRefactored = () => {
   const inputRef = useRef();
@@ -12,7 +12,11 @@ const FactOnSubmitRefactored = () => {
     <div className="box">
       <input ref={inputRef} />
       <button onClick={submitHandler}>Search for category</button>
-      <StatusMessageRefactored result={result} status={status} />
+
+      {status === viewState.SUCCESS && <p>{result.value}</p>}
+      {status === viewState.LOADING && <strong>Loading.. </strong>}
+      {status === viewState.ERROR && <strong>Something went wrong</strong>}
+      
       {searchText && <p>you searched for:{inputRef.current.value}</p>}
     </div>
   );
