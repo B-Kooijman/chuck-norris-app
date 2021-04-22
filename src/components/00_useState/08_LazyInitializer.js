@@ -12,6 +12,7 @@ const ChildComponent = ({ clickHandler }) => (
   </>
 );
 
+// look at the session storage.
 const getLikesFromSession = () => {
   console.log("executed: getLikesFromSession")
   const likes = Number(localStorage.getItem(key));
@@ -20,8 +21,7 @@ const getLikesFromSession = () => {
 
 const LazyInitializer = () => {
 
-  //Look at the logs, what do you notice when you rerender?
-
+  //What is the mistake here?
   const [likes, setLikes] = useState(getLikesFromSession());
   const likeUpdater = () => setLikes((likes) => likes + 1);
 

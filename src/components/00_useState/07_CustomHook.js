@@ -8,6 +8,7 @@ const url = config.randomFactUrl + "sport";
 
 const CustomHook = () => {
   // Encapsulation.
+  // Naming convention for eslint.
   const [result, setResult] = useResult();
   const [status, { setSuccessView, setLoadingView, setErrorView }] = useView(viewState.SUCCESS);
 
@@ -19,7 +20,7 @@ const CustomHook = () => {
         setSuccessView();
       })
       .catch((error) => {
-        setErrorView(error);
+        setErrorView(error); // passing arguments.
       });
   }
 

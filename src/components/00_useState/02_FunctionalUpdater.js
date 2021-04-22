@@ -4,8 +4,6 @@ const FunctionalUpdater = () => {
 
   const [likes, setLikes] = useState(0);
 
-console.log("hello")
-
   // 1 regular state update
   const regularUpdater = () => {
     setLikes(likes + 1);

@@ -14,7 +14,7 @@ const FactOnInterval = () => {
 
   useEffect(() => {
     const interval = setInterval(getFact, 3000);
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); //clean up 
   }, []);
 
   return result ? <Result {...result} /> : null;

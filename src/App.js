@@ -12,6 +12,10 @@ import CustomHook from "./components/00_useState/07_CustomHook";
 import LazyInitializer from "./components/00_useState/08_LazyInitializer";
 import FactOnUrl from "./components/00_useState/09_FactOnUrl";
 
+//useEffect
+import FactOnInput from "./components/01_useEffect/FactOnInput";
+import FactOnInterval from "./components/01_useEffect/FactOnInterval";
+
 // useRef
 import FactOnSubmit from "./components/02_useRef/FactOnSubmit";
 import FactOnSubmitRefactored from "./components/02_useRef/FactOnSubmitRefactored";
@@ -20,11 +24,6 @@ import FactOnUnmount from "./components/02_useRef/FactOnUnmount";
 //useMemo
 import MemoizeValue from "./components/05_performance/01_MemoizeValue";
 import MemoizeFunction from "./components/05_performance/02_MemoizeFunction";
-
-import FactOnInput from "./components/FactOnInput";
-import FactOnMount from "./components/FactOnMount";
-import FactOnInterval from "./components/01_useEffect/FactOnInterval";
-import FactWithDefault from "./components/01_useEffect/FactWithDefault";
 
 import ThemeButton from "./components/_shared/ThemeButton";
 import ThemeButtonRefactored from "./components/_shared/ThemeButtonRefactored";
@@ -52,9 +51,7 @@ const routes = {
   lazyInitializer: "/lazyinitializer",
   onInput: "/oninput",
   onSubmit: "/onsubmit",
-  onMount: "/onmount",
   onInterval: "/oninterval",
-  withDefault: "/withdefault",
   onUnmount: "/onunmount",
   memoizeValue: "/memoizevalue",
   memoizeFunction: "/memoizeFunction",
@@ -73,9 +70,7 @@ export default function App() {
     lazyInitializer,
     onInput,
     onSubmit,
-    onMount,
     onInterval,
-    withDefault,
     onUnmount,
     memoizeValue,
     memoizeFunction, 
@@ -104,9 +99,7 @@ export default function App() {
           <div>
             <span>useEffect</span>
             <MenuItem url={onInput} text="On Input" />
-            <MenuItem url={onMount} text="On Mount" />
             <MenuItem url={onInterval} text="On Interval" />
-            <MenuItem url={withDefault} text="With Default" />
           </div>
           <div>
             <span>useRef</span>
@@ -134,10 +127,10 @@ export default function App() {
         <Route path={customHook} component={CustomHook} />
         <Route path={lazyInitializer} component={LazyInitializer} />
         <Route path={onInput} component={FactOnInput} />
-        <Route path={onSubmit} component={FactOnSubmitRefactored} />
-        <Route path={onMount} component={FactOnMount} />
-        <Route path={onInterval} component={FactWithDefault} />
-        <Route path={withDefault} component={FactOnInterval} />
+        {/* <Route path={onSubmit} component={FactOnSubmitRefactored} /> */}
+        <Route path={onSubmit} component={FactOnSubmit} />
+
+        <Route path={onInterval} component={FactOnInterval} />
         <Route path={onUnmount} component={FactOnUnmount} />
         <Route path={memoizeValue} component={MemoizeValue} />
         <Route path={memoizeFunction} component={MemoizeFunction} />

@@ -18,15 +18,6 @@ const useView = (initialView = viewState.LOADING) => {
     }
   };
 
-  // const viewSetters = {
-  //   setSuccessView: useCallback(() => setView(viewState.SUCCESS), []),
-  //   setLoadingView: useCallback(() => setView(viewState.LOADING), []),
-  //   setErrorView: useCallback((error) => {
-  //       setView(viewState.ERROR);
-  //       console.error(error.message);
-  //   },[])
-  // };
-
   return [view, viewSetters];
 };
 

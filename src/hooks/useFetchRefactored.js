@@ -12,8 +12,8 @@ const useFetchRefactored = (category) => {
   const url = category ? baseUrl + category : defaultUrl;
   
   const [result, setResult] = useState();
-  //  const [status, { setSuccessView, setLoadingView, setErrorView }] = useView();
-  const {status, setSuccessView, setLoadingView, setErrorView } = useViewReducer();
+  const [status, { setSuccessView, setLoadingView, setErrorView }] = useView();
+  //const {status, setSuccessView, setLoadingView, setErrorView } = useViewReducer();
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -43,6 +43,8 @@ const useFetchRefactored = (category) => {
     return () => {
       isMounted.current = false;
     };
+
+    // look at the warning here.
   }, [url]);
 
   return { result, status };

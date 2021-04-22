@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchResult } from "../utils/fetchResult";
 import config from "../config";
 
@@ -6,15 +6,15 @@ const baseUrl = config.randomFactUrl;
 const defaultUrl = baseUrl + "food";
 
 const useFetch = (category) => {
+
+  //this could be improved. 
   const [result, setResult] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
-  const isMounted = useRef(false);
   const url = category ? baseUrl + category : defaultUrl;
 
+  //async way to use useEffect in custom hook.
   useEffect(() => {
-    isMounted.current = true;
-
     const getResult = async () => {
       setLoading(true);
       setError();
@@ -22,33 +22,24 @@ const useFetch = (category) => {
 
       await fetchResult(url)
         .then((response) => {
-          if (isMounted.current) {
             setResult(response);
-        }
       })
         .catch((error) => {
-          if (isMounted.current) {
             setResult();
             setError(error.message);
-          }
         })
         .finally(() => {
-          if (isMounted.current) {
             setError();
             setLoading(false);
-          }
         });
-      }, 5000)
+
+      }, 5000) //delay
     };
 
       getResult();
-
-    return () => {
-      isMounted.current = false;
-    };
   }, [url]);
 
-  return { result, loading, error };
+  return { result, loading, error }; // return value
 };
 
 export default useFetch;

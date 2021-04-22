@@ -37,6 +37,7 @@ const DerivedState = () => {
 // #region Derived State
 // const ChildComponent = ({ likeState }) => 
 //     <div>
+//       {/* Prevents out of sync bugs */}
 //       {likeState?.likes >= 5 && <span>Top Fact about Chuck!</span>}
 //       <p>
 //         When Chuck Norris does a pushup, he isn't lifting himself up, he's
