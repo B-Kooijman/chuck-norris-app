@@ -10,6 +10,7 @@ import MultipleStates from "./components/00_useState/05_MultipleStates";
 import StateEnum from "./components/00_useState/06_StateEnum";
 import CustomHook from "./components/00_useState/07_CustomHook";
 import LazyInitializer from "./components/00_useState/08_LazyInitializer";
+import FactOnUrl from "./components/00_useState/09_FactOnUrl";
 
 // useRef
 import FactOnSubmit from "./components/02_useRef/FactOnSubmit";
@@ -33,7 +34,7 @@ const MenuItem = ({ url, text, exact = false }) => {
   // console.log("rerendered");
   return (
     <li>
-      <NavLink activeClassName="active" to={url} exact={exact}>
+      <NavLink activeClassName="active" to={`${url}${"/food"}`} exact={exact}>
         {text}
       </NavLink>
     </li>
@@ -57,6 +58,7 @@ const routes = {
   onUnmount: "/onunmount",
   memoizeValue: "/memoizevalue",
   memoizeFunction: "/memoizeFunction",
+  onUrl: "/onUrl",
 };
 
 export default function App() {
@@ -76,7 +78,8 @@ export default function App() {
     withDefault,
     onUnmount,
     memoizeValue,
-    memoizeFunction
+    memoizeFunction, 
+    onUrl
   } = routes;
 
   const [theme, setTheme] = useTheme();
@@ -96,6 +99,7 @@ export default function App() {
             <MenuItem url={stateEnum} text="State Enum" />
             <MenuItem url={customHook} text="Custom Hook" />
             <MenuItem url={lazyInitializer} text="Lazy Initializer" />
+            <MenuItem url={onUrl} text="On Url" />
           </div>
           <div>
             <span>useEffect</span>
@@ -137,6 +141,7 @@ export default function App() {
         <Route path={onUnmount} component={FactOnUnmount} />
         <Route path={memoizeValue} component={MemoizeValue} />
         <Route path={memoizeFunction} component={MemoizeFunction} />
+        <Route path={`${onUrl}/:category`} component={FactOnUrl} />
       </Switch>
     </div>
   );
