@@ -30,11 +30,11 @@ import ThemeButton from "./components/_shared/ThemeButton";
 import ThemeButtonRefactored from "./components/_shared/ThemeButtonRefactored";
 import { useTheme } from "./components/04_context/ThemeContext";
 
-const MenuItem = ({ url, text, exact = false }) => {
+const MenuItem = ({ url, text, exact = false, category="" }) => {
   // console.log("rerendered");
   return (
     <li>
-      <NavLink activeClassName="active" to={`${url}${"/food"}`} exact={exact}>
+      <NavLink activeClassName="active" to={`${url}${category}`} exact={exact}>
         {text}
       </NavLink>
     </li>
@@ -99,7 +99,7 @@ export default function App() {
             <MenuItem url={stateEnum} text="State Enum" />
             <MenuItem url={customHook} text="Custom Hook" />
             <MenuItem url={lazyInitializer} text="Lazy Initializer" />
-            <MenuItem url={onUrl} text="On Url" />
+            <MenuItem url={onUrl} text="On Url" category="/food"/>
           </div>
           <div>
             <span>useEffect</span>
