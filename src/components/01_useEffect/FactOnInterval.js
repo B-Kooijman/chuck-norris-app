@@ -3,7 +3,7 @@ import Result from "../_shared/Result";
 import { fetchResult } from "../../utils/fetchResult";
 import config from "../../config";
 
-const url = config.randomFactUrl + "food";
+const url = config.randomFactUrl + "dev";
 
 const FactOnInterval = () => {
   const [result, setResult] = useState("Jokes are incoming...");

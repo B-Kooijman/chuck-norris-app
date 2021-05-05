@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Result from "../_shared/Result";
 import useFetch from "../../hooks/useFetch";
 
@@ -12,10 +12,7 @@ const FactOnSubmit = () => {
 
   //1. try to pass ref value to useFetch as argument, without useState.
   //2. try with useEffect with ref as dependency
-
-  // useEffect(() => {
-  //   setSearchText(inputRef.current?.value)
-  // }, [inputRef.current.value])
+  //3. try to log value after click.
 
   return (
     <div className="box">

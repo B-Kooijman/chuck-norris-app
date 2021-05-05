@@ -2,8 +2,7 @@
 import {memo} from "react";
 
 const CallbackReviewComponent = ({message, reviewHandler}) => {
-   var rating = reviewHandler;
-  // var rating = reviewHandler;
+  var rating = reviewHandler;
 
   return (
     <>

@@ -22,7 +22,7 @@ const useFetchRefactored = (category) => {
     const getResult = async () => {
       setLoadingView();
       setTimeout(async () => {
-        await fetchResult(url + "*")
+        await fetchResult(url)
           .then((response) => {
             if (isMounted.current) {
               setResult(response);

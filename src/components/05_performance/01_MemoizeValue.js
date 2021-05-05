@@ -4,35 +4,42 @@ const MemoizeValue = () => {
   const [likes, setLikes] = useState(0);
   const [multipliedLikes, setMultipliedLikes] = useState(0);
 
-  // 1 no performance optimization
-  // const multiplier = () => {
-  //   console.log("executed multiplier");
-  //   return likes * 10;
-  // };
+  // #region useEffect no performanceoptimization
+  const multiplier = () => {
+    // this will be logged twice a time, why do you think?
+    console.log("executed multiplier");
+    return likes * 10; 
+  };
 
-  // useEffect(() => {
-  //   setMultipliedLikes(multiplier);
-  // });
+  useEffect(() => setMultipliedLikes(multiplier));
 
-  // 2 useMemo, memorizes the value (cache), the cache logic is heavy extra work!
+  // #endregion
+
+  // #region useMemo
+  //2 useMemo, memorizes the value (cache), the cache logic is heavy extra work!
   // const multiplier = useMemo(() => {
   //   console.log("executed multiplier");
   //   return likes * 10;
   // }, [likes]);
 
-  // useEffect(() => {
-  //   console.log("useMemo value", multiplier);
-  //   setMultipliedLikes(multiplier);
+  //  useEffect(() => {
+  //   console.log("multiplier", multiplier);
+  //   setMultipliedLikes(multiplier)
   // });
+  // #endregion
+  
+  //#region with useEffect
+  // 3 with useEffect, same result, only the side effect is just skipped, instead of checking the cache
+  // const multiplier = () => {
+  //   console.log("executed multiplier")
+  //   return likes * 10;
+  // }
 
-  // 3 with usEffect, same result, only the side effect is just skipped, instead of checking the cache
-  const multiplier = () => {
-    console.log("executed multiplier")
-    return likes * 10;
-  }
-  useEffect(() => {
-    setMultipliedLikes(multiplier)
-  }, [likes])
+  // useEffect(() => {
+  //   console.log("multiplier", multiplier)
+  //   setMultipliedLikes(multiplier)
+  // }, [likes])
+  // #endregion
 
   const clickHandler = () => setLikes((likes) => likes + 1);
 

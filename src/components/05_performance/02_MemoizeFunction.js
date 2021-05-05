@@ -3,10 +3,10 @@ import ReviewComponent  from "./ReviewComponent";
 import CallbackReviewComponent  from "./CallbackReviewComponent";
 
 function getRandomReview(number = 0) {
-//  console.log("Rerendered:  getRandomReview");
+  console.log("Executed function:  getRandomReview");
   const reviews = ["No comment", "This is afwul.", "Not funny at ALL", "Heard better", ":D",  "LOL, so funny!"]
 
-  if(number > 5) {
+  if (number > 5) {
     number = 5;
   }
 
@@ -16,9 +16,11 @@ function getRandomReview(number = 0) {
 
 const MemoizeFunction = () => {
   const [number, setNumber] = useState(null);
-  // const reviewHandler = () => getRandomReview(number);
-   const reviewHandler = useCallback(getRandomReview(number), [number]);
-  // const reviewHandler = useMemo(() => getRandomReview(number), [number]); 
+  //const reviewHandler = () => getRandomReview(number);
+  //const reviewHandler = useCallback(() => getRandomReview(number), [number]);
+  
+  // same result, if you dont pass a function. you can use useMemo
+  //const reviewHandler = useMemo(() => getRandomReview(number), [number]); 
 
   return (
     <div className="box">
@@ -29,9 +31,13 @@ const MemoizeFunction = () => {
 
       <input type="number" max="5" min="0" placeholder="star from 0 - 5" onChange={(event) => setNumber(event.currentTarget.value || 0)}/>
 
-      {/* <ReviewComponent message={"No comment"}/> */}
-      <CallbackReviewComponent message={"your rating: "} reviewHandler={reviewHandler} />
+      {/* First pass a static message */}
+      <ReviewComponent message={"No comment"}/>
 
+      {/* now also pass a function */}
+      {/* <CallbackReviewComponent message={"your rating: "} reviewHandler={reviewHandler} /> */}
+      
+      {/* {console.log("this is memoized: ", reviewHandler)} */}
     </div>
   );
 };

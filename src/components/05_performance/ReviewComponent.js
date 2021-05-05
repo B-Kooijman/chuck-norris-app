@@ -8,8 +8,14 @@ function areEqual(prevProps, nextProps) {
   console.log("prevProps", prevProps)
   console.log("nextProps", nextProps)
 
-    // var isEqual = prevProps === nextProps;
-    var isEqual = shallowCompare(prevProps, nextProps); 
+    // reference comparer
+    var isEqual = prevProps === nextProps;
+
+    // value comparer
+    //var isEqual = prevProps.message === nextProps.message;
+
+    // former react comparer now baked in to React
+    //var isEqual = shallowCompare(prevProps, nextProps); 
 
   console.log("isEqual", isEqual)
   return isEqual;
@@ -25,5 +31,5 @@ const ReviewComponent = ({message}) => (
     </>
   );
 
- // export default memo(ReviewComponent);
-  export default memo(ReviewComponent, areEqual);
+ export default memo(ReviewComponent);
+  //export default memo(ReviewComponent, areEqual);
