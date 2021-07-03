@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchResult } from "../utils/fetchResult";
 import config from "../config";
 import useView from "./useView";
-import useViewReducer from "./useViewReducer";
+// import useViewReducer from "./useViewReducer";
 
 const baseUrl = config.randomFactUrl;
 const defaultUrl = baseUrl + "food";
@@ -44,8 +44,8 @@ const useFetchRefactored = (category) => {
       isMounted.current = false;
     };
 
-    // look at the warning here.
-  }, [url]);
+    // remove the setters from the dependency array below and look at the warning.
+  }, [url, setErrorView, setLoadingView, setSuccessView]);
 
   return { result, status };
 };
